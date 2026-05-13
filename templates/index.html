@@ -5,48 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task Manager</title>
     
-    <link rel="stylesheet" href={{url_for('static',filename="style.css")}}>
+    <link rel="stylesheet" href="{{url_for('static',filename="style.css")}}">
 
   </head>
 
   <body>
-    <h1>Sarah's Task Manager</h1>
+    <h1>TaskFlow</h1>
 
-    <h3>
-      Total: {{total}} |
-      Completed: {{completed}} |
-      Remaining: {{remaining}}
-    </h3>
+    <h3 id="stats">Loading...</h3>
 
-    <div style="text-align:center;">
-      <a href="/?filter=all">All</a>
-      <a href="/?filter=completed">Completed</a>
-      <a href="/?filter=pending">Pending</a>
+    <div class="filter-buttons">
+      <button onclick="loadTasks('all')">All</button>
+      <button onclick="loadTasks('completed')">Completed</button>
+      <button onclick="loadTasks('pending')">Pending</button>
     </div>
+
     <br>
-    <form action="/add" method="POST">
-      <input type="text" name="title" placeholder="Enter new Task" required />
-      <button type="submit">Add Task</button>
-    </form>
 
-    <ul>
-      {% for task in tasks %}
-      <li>
-        <a href="/toggle/{{task[0]}}">
-          {% if task[2] == 1 %}
-            ✔️
-          {% else %}
-            ⬜
-          {% endif %}
-        </a>
-        {{task[1]}}
+    <!-- Add task -- JS function call -->
+    <div class="add-task">
+      <input type="text" id="task-input" placeholder="Enter new task">
+      <button onclick="addTask()">Add Task</button>
+    </div>
 
-        <div>
-          <a href="/edit/{{task[0]}}">✏️</a>
-          <a href="/delete/{{task[0]}}">❌</a>
-        </div>
-      </li>
-      {% endfor %}
+    <!-- Task list -->
+    <ul id="task-list">
+      Loading...
     </ul>
+
+    <script src="{{url_for('static',filename='app.js')}}"></script>
   </body>
 </html>
