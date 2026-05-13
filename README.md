@@ -4,12 +4,6 @@ A minimal and elegant **Task Manager web application** built with Python Flask a
 
 ---
 
-## 🖥️ Preview
-
-![TaskFlow Screenshot](screenshots/taskflow.JPG)
-
----
-
 ## ✨ Features
 
 - ➕ Add new tasks instantly
